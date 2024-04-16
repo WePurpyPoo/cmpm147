@@ -1,79 +1,94 @@
-// sketch.js - purpose and description here
-// Author: Your Name
-// Date:
+// sketch.js - Living Impressions
+// Author: Joey Longo
+// Date: 4-14-24
 
-// Here is how you might set up an OOP p5.js project
-// Note that p5.js looks for a file called sketch.js
+/* exported setup, draw */
 
-// Constants - User-servicable parts
-// In a longer project I like to put these in a separate file
-const VALUE1 = 1;
-const VALUE2 = 2;
+let seed = 0;
 
-// Globals
-let myInstance;
-let canvasContainer;
-var centerHorz, centerVert;
+const grassColor = "#C2B280";
+const skyColor = "#3B05A5";
+const duneColor = "#DD8B17";
+const treeColor = "#4A392E";
+const waterColor = "#60E1EA";
 
-class MyClass {
-    constructor(param1, param2) {
-        this.property1 = param1;
-        this.property2 = param2;
-    }
-
-    myMethod() {
-        // code to run when method is called
-    }
-}
-
-function resizeScreen() {
-  centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
-  centerVert = canvasContainer.height() / 2; // Adjusted for drawing logic
-  console.log("Resizing...");
-  resizeCanvas(canvasContainer.width(), canvasContainer.height());
-  // redrawCanvas(); // Redraw everything based on new size
-}
-
-// setup() function is called once when the program starts
 function setup() {
-  // place our canvas, making it fit our container
-  canvasContainer = $("#canvas-container");
-  let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
-  canvas.parent("canvas-container");
-  // resize canvas is the page is resized
-
-  // create an instance of the class
-  myInstance = new MyClass("VALUE1", "VALUE2");
-
-  $(window).resize(function() {
-    resizeScreen();
-  });
-  resizeScreen();
+  createCanvas(400, 200);
+  createButton("reimagine").mousePressed(() => seed++);
 }
 
-// draw() function is called repeatedly, it's the main animation loop
 function draw() {
-  background(220);    
-  // call a method on the instance
-  myInstance.myMethod();
+  randomSeed(seed);
 
-  // Set up rotation for the rectangle
-  push(); // Save the current drawing context
-  translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-  rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-  fill(234, 31, 81);
+  background(100);
+
   noStroke();
-  rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-  pop(); // Restore the original drawing context
 
-  // The text is not affected by the translate and rotate
-  fill(255);
-  textStyle(BOLD);
-  textSize(140);
-  text("p5*", centerHorz - 105, centerVert + 40);
+  fill(skyColor);
+  rect(0, 0, width, height / 2);
+
+  fill(duneColor);
+  beginShape();
+  let amplitude1 = random(2,5); // Amplitude of the sine wave
+  let frequency1 = random(0.002, 0.005); // Frequency of the sine wave
+  let phase1 = 0; // Phase shift of the sine wave
+  vertex(0, height / 2);
+  for (let x = 0; x < width; x++) {
+    let y = height / 3 + amplitude1 * sin(TWO_PI * frequency1 * x + phase1);
+    vertex(x, y); // Add vertex of the sine wave
+  }
+  vertex(width, height); // End at the bottom right corner
+  endShape(CLOSE);
+  
+  fill(grassColor);
+  rect(0, height / 2, width, height / 2);
+  
+  fill(waterColor);
+  beginShape();
+  timeOffset = millis() * 0.002 * random(); // Adjust the speed of movement
+  const scrub = mouseX / width;
+  vertex(0, height); // Start from the bottom left corner
+  let amplitude = 5; // Amplitude of the sine wave
+  let frequency = random(0.008, 0.02); // Frequency of the sine wave
+  let phase = timeOffset * 0.5 + scrub * TWO_PI; // Phase shift of the sine wave
+  for (let x = 0; x < width; x++) {
+    let y = height / 1.35 + amplitude * sin(TWO_PI * frequency * x + phase);
+    vertex(x, y); // Add vertex of the sine wave
+  }
+  vertex(width, height); // End at the bottom right corner
+  endShape(CLOSE);
+
+
+  fill(treeColor);
+  const trees = 10 * random();
+  for (let i = 0; i < trees; i++) {
+    let z = random() * 5;
+    let x = width * ((random() + (scrub / 50 + millis() / 500000.0) / z) % 1);
+    let s = width / 50 / z;
+    let y = height / 2 + height / 20 / z;
+    // Add a condition to avoid tiny trees in the background
+    if (s > 5) {
+      if (s < 30) {
+        drawSkeletonTree(x, y, s);
+      }  
+    }
+  }
 }
 
-// mousePressed() function is called once after every time a mouse button is pressed
-function mousePressed() {
-    // code to run when mouse is pressed
+function drawSkeletonTree(x, y, s) {
+  // Draw the main trunk
+  stroke(treeColor);
+  strokeWeight(s / 8);
+  line(x, y, x, y - s); // Adjust trunk length
+
+  // Draw branches
+  let branchCount = int(random(3, 6));
+  for (let i = 0; i < branchCount; i++) {
+    let angle = random(PI / 6, 5 * PI / 6); // Corrected angle range for upwards branches
+    let branchLength = s * random(0.3, 0.7); // Adjust branch length
+    let startY = random(y - s, y - s / 2); // Random starting point along trunk's height
+    let endX = x + branchLength * cos(angle);
+    let endY = y - branchLength * 4*sin(angle);
+    line(x, startY, endX, endY); // Connect branches to the trunk
+  }
 }
