@@ -12,9 +12,28 @@ const duneColor = "#DD8B17";
 const treeColor = "#4A392E";
 const waterColor = "#60E1EA";
 
-function setup() {
-  createCanvas(400, 200);
-  createButton("reimagine").mousePressed(() => seed++);
+
+function setup() {  
+  canvasContainer = $("#canvas-container");
+  let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
+  canvas.parent("canvas-container");
+  $(window).resize(function() {
+    resizeScreen();
+  });
+  resizeScreen();
+}
+
+// listener for reimagine button
+$("#reimagine").click(function() {
+  seed++;
+});
+
+function resizeScreen() {
+  centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
+  centerVert = canvasContainer.height() / 2; // Adjusted for drawing logic
+  console.log("Resizing...");
+  resizeCanvas(canvasContainer.width(), canvasContainer.height());
+  // redrawCanvas(); // Redraw everything based on new size
 }
 
 function draw() {
