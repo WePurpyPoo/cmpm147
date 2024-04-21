@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment X - Subject/Topic</title>
+	<title>Experiment 3 - Alternate Worlds</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
@@ -23,39 +23,50 @@
 	<!-- Link to javascript files - DEFER waits until all elements are rendered -->
     <script type="text/javascript" src="../js/site.js" DEFER></script>
 	<!-- Use me for a JavaScript OOP Project -->
-	<script type="text/javascript" src="./js/project.js" DEFER></script>
+	<script type="text/javascript" src="./js/exp3_base_1.js" DEFER></script>
 	<!-- Use me for a p5.js project -->
-	<script type="text/javascript" src="./js/sketch.js" DEFER></script>
+	<script type="text/javascript" src="./js/exp3_base_2.js" DEFER></script>
+	<script type="text/javascript" src="./js/exp3_solution_1.js" DEFER></script>
+	<script type="text/javascript" src="./js/exp3_solution_2.js" DEFER></script>
 </head>
 <body>
 	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
 	<main id="content">
 		<section>
 
-			<h1>Experiment X - Subject/Topic</h1>
+			<h1>Experiment 3 - Alternate Worlds</h1>
 
 			<div class="minor-section">
 				<div id="canvas-container">
 					<!-- canvas will be added here -->
+					<textarea cols="20" rows="20" id="asciiBox" style="opacity: 0.5; letter-spacing: 1ex; width: 320px; margin: 10px; font-family: monospace;"></textarea>
 				</div>
-                <div class="fullscreen-box">
+				<div class="fullscreen-box">
                     <button id="fullscreen">Fullscreen</button>
+					<button id="reseedButton">Reseed</button>
+					<span id="seedReport" style="margin: 10px;"></span>
                 </div>
+				<p>Help from thkaspar's tileset, ChatGPT, and Wes's code</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>What are you trying to acomplish with this experiment?</p>
+				<p>In this assignment, we are creating tile based generative worlds. We must make 1 outdoor world and 1 dungeon world with signs of life being implemented in both.</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>Describe in detail what you did technically and how it works?</p>
+				<p>The system runs on many functions but mainly, a grid is created using symbols such as '_' and ','. Based on which symbol is on the grid and what it is surrounded by, the program shows a small image that is from a tile based image.
+					It does this by using a coordinate system for the image to decide what it shows. 
+				</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
+				<p>This assignment ended up being very difficult for me, even more so than the last one. At times I felt completely lost, and ChatGPT couldn't even save me most of the time (probably because I didn't really understand fully what I was doing).
+					At first it was just difficult for me to understand what was being asked of me with functions like the gridCode, and gridContext. Once I got past that though, it wasn't really smooth sailing
+					because I just kept running into roadblocks trying to implement a certain feature. Several times, the solution was just something very simple like moving the placements of the declaration of variables, but it took me hours to get to that point.
+				</p>
 			</div>
 
 		</section>
