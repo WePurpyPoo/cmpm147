@@ -1,5 +1,3 @@
-/* exported generateGrid, drawGrid */
-/* global placeTile */
 
 function generateGrid(numCols, numRows) {
   // Define the range within which the smaller region can be placed

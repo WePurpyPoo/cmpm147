@@ -14,7 +14,7 @@ body {
     background-color:mintcream;
 }
 
-#canvas-container, #canvas-container2 {
+#canvas-container {
     width: 100%;
     display:flex;
     justify-content: center;
