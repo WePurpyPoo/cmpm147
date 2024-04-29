@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment 3 - Alternate Worlds</title>
+	<title>Experiment 4 - Infinite Worlds</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
@@ -23,49 +23,59 @@
 	<!-- Link to javascript files - DEFER waits until all elements are rendered -->
     <script type="text/javascript" src="../js/site.js" DEFER></script>
 	<!-- Use me for a JavaScript OOP Project -->
-	<script type="text/javascript" src="./js/exp3_base_1.js" DEFER></script>
+	<script type="text/javascript" src="./js/BlinkingBlocks/engine.js" DEFER></script>
+	<script type="text/javascript" src="./js/BlinkingBlocks/my_world.js" DEFER></script>
+ 	<script type="text/javascript" src="./js/BlinkingBlocks/xxhash.min.js" DEFER></script>
 	<!-- Use me for a p5.js project -->
-	<script type="text/javascript" src="./js/exp3_base_2.js" DEFER></script>
-	<script type="text/javascript" src="./js/exp3_solution_1.js" DEFER></script>
-	<script type="text/javascript" src="./js/exp3_solution_2.js" DEFER></script>
+	<!-- <script type="text/javascript" src="./js/InfiniteMeadow/engine.js" DEFER></> -->
+	<!-- <script type="text/javascript" src="./js/WelcomeToWHITESPACE/engine.js" DEFER></script> -->
 </head>
 <body>
 	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
 	<main id="content">
 		<section>
 
-			<h1>Experiment 3 - Alternate Worlds</h1>
+			<h1>Experiment 4 - Infinite Worlds</h1>
 
 			<div class="minor-section">
 				<div id="canvas-container">
 					<!-- canvas will be added here -->
-					<textarea cols="20" rows="20" id="asciiBox" style="opacity: 0.5; letter-spacing: 1ex; width: 320px; margin: 10px; font-family: monospace;"></textarea>
 				</div>
 				<div class="fullscreen-box">
-                    <button id="fullscreen">Fullscreen</button>
-					<button id="reseedButton">Reseed</button>
-					<span id="seedReport" style="margin: 10px;"></span>
                 </div>
-				<p>Help from thkaspar's tileset, ChatGPT, and Wes's code</p>
+                </div>
+				<p>Assets from Minecraft and OMORI. Help from ChatGPT and Wes's Code</p>
+				<ul>
+					<li><a href="index3.html">Infinite Meadows</a></li>
+					<li><a href="index2.html">Welcome to WHITESPACE</a></li>
+				</ul>
 			</div>
 
 			<div class="minor-section">
 				<h2>Description</h2>
-				<p>In this assignment, we are creating tile based generative worlds. We must make 1 outdoor world and 1 dungeon world with signs of life being implemented in both.</p>
+				<p>These projects are infinite world generators based on tiles and grids in an isometric view. Infinite Meadows is based off of the meadow biomes from Minecraft, using flowers from the game as sprites.
+					Welcome to WHITESPACE is a generator that recreates WHITESPACE from OMORI. Blinking Blocks features an infinite line of tiles that switch on an off with twinkling stars in the empty space. Blinking Blocks
+					was inspired by Beat Block Galaxy from Mario Galaxy 2, but it is not a direct representation.
+				</p>
+				<img src="img/2024-04-27_12.03.26.png" height="200">
+				<img src="img/whitespace.jpeg" height="200">
+				<img src="img/1600px-SMG2_Beat_Blocks.png" height="200">
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
-				<p>The system runs on many functions but mainly, a grid is created using symbols such as '_' and ','. Based on which symbol is on the grid and what it is surrounded by, the program shows a small image that is from a tile based image.
-					It does this by using a coordinate system for the image to decide what it shows. 
+				<p>Each system runs on a grid each with their own coordinates. They all use the hash function to randomly generate different components of the scene. When the seed box is updated, everything is updated accordingly and
+					stays the same for the same seeds. Infinite Meadows randomly scatters flowers and if the user clicks on a tile, it will change to become a different flower. Welcome to WHITESPACE has red hands that
+					reset the camera back to the original position when they are clicked. Blinking Blocks has the tiles that turn on and off on a certain time interval while their color and position is also randomized.
 				</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
-				<p>This assignment ended up being very difficult for me, even more so than the last one. At times I felt completely lost, and ChatGPT couldn't even save me most of the time (probably because I didn't really understand fully what I was doing).
-					At first it was just difficult for me to understand what was being asked of me with functions like the gridCode, and gridContext. Once I got past that though, it wasn't really smooth sailing
-					because I just kept running into roadblocks trying to implement a certain feature. Several times, the solution was just something very simple like moving the placements of the declaration of variables, but it took me hours to get to that point.
+				<p> This assignment took a long time for me to complete but I didn't feel as lost as last time. I definitely felt lost in the beginning as I didn't feel like I knew the skills to implement random generation throughout an infinite world.
+					Even though the first project may seem simple, it took me about 20 hours to complete it. At that point I decided to work on things that I actually knew I could probably implement with my knowledge. From there I created Welcome to WHITESPACE
+					which was so much better for me to make because I actually knew what I was doing for the most part. Blinking Blocks was the same, though I did run into a few hiccups along the way. I also tried to use instance mode to have them all display on the same page
+					but I figured it wasn't worth it, especially since I think they work better on seperate pages anyway.
 				</p>
 			</div>
 
