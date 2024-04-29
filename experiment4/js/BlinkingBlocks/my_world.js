@@ -106,7 +106,6 @@ function p3_drawTile(i, j) {
             let fadeOut = 500
             let blockAlpha = 255 * (1 - (millis() % fadeOut) / fadeOut);
             fill(255,blockAlpha)
-            console.log('wow')
           } else {
             fill(block1color) 
           }
