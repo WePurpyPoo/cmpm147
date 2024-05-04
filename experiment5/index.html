@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- This title is used for tabs and bookmarks -->
+	<title>Experiment 5 - Evolutionary Impressions</title>
+
+	<!-- Use UTF character set, a good idea with any webpage -->
+	<meta charset="UTF-8" />
+	<!-- Set viewport so page remains consistently scaled w narrow devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
+	<link rel="stylesheet" type="text/css" href="../css/site.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- Load jQuery library -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+	<!-- Load p5.js library -->
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+
+	<!-- Link to javascript files - DEFER waits until all elements are rendered -->
+    <script type="text/javascript" src="../js/site.js" DEFER></script>
+	<!-- Use me for a JavaScript OOP Project -->
+	<script type="text/javascript" src="./js/my_design.js" DEFER></script>
+	<script type="text/javascript" src="./js/p4_base.js" DEFER></script>
+	<!-- Use me for a p5.js project -->
+</head>
+<body>
+	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
+	<main id="content">
+		<section>
+
+			<h1>Experiment 5 - Evolutionary Impressions</h1>
+
+			<div class="minor-section">
+				<div id="canvas-container">
+					<!-- canvas will be added here -->
+					<div class="results-top">
+						<div class="image-container">
+							<p id="original"></p>
+							<p class="caption"></p>
+						</div>
+						<div class="image-container">
+							<p id="active"></p>
+							<p>Active Image</p>
+						</div>
+						<div class="image-container">
+							<p id="best"></p>
+							<p>Best Image</p>
+						</div>
+					</div>
+					<div class="controls">
+						<div class="controls-col1">
+							<select id="dropper"></select>
+							<button id="restart">
+							restart
+							</button>
+							<p>
+							Mutation rate (<span id="rate"></span>%):<br /><input
+								id="slider"
+								type="range"
+								min="1"
+								max="100"
+								value="100"
+							/>
+							</p>
+						</div>
+						<div class="controls-col2">
+							<p>Active score: <span id="activeScore"></span></p>
+							<p>Exploration rate: <span id="fpsCounter"></span> fps</p>
+							<p>Best score: <span id="bestScore"></span></p>
+						</div>
+					</div>
+					<div class="results-bottom">
+						<p id="memory" data-max-items="16"></p>
+					</div>
+					</div>
+				</div>
+				<div class="fullscreen-box">
+                </div>
+                </div>
+				<p>Help from ChatGPT and Wes's Code</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Description</h2>
+				<p> This project takes an existing image and then creates a new image out of it. There is a slider that will change the mutation rate on the image so with 100 being the highest mutation and 1 being the lowest.
+					Once the program generates new images, it will display them below.
+				</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Technical</h2>
+				<p> The program has a drop down menu with all the images from the assets folder. Then when the user clicks on one of them, it creates a set of parameters for that image such as x,y coordiates and color of those certian coordinates.
+					Then it goes through a drawing function that will then draw the image with the parameters given. Then it will go through a mutation function that alters the existing shapes. 
+					The intensity of the mutation is dependent on the mutation slider as higher numbers will up the intensity and lower numbers will lower the intensity.
+				</p>
+			</div>
+
+			<div class="minor-section">
+				<h2>Reflection</h2>
+				<p> This assignment was a lot less tedious and frustrating than some of the other experiments. It was hard to understand what the instructions meant at first but the example really helped a lot with that. I had most of it down pretty quickly
+					but I didn't really know how to make the shapes actually correlate with the image so it was just a bunch of random circles that didn't look like the original image. ChatGPT helped a lot with this issue as it showed me the map function, allowing me to map
+					colors and pixels with certain coordiantes. After that it was a lot of changing of parameters until I got what I wanted. Overall I think I did a decent job especially adding the colors and opacity and I had some fun doing it as well.
+				</p>
+			</div>
+
+		</section>
+		<nav id="links" class="minor-section">
+			<!-- Put link back to homepage here. -->
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+		</nav>
+	</main>
+</body>
+</html>
