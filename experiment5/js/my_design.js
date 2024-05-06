@@ -1,4 +1,5 @@
 /* exported p4_inspirations, p4_initialize, p4_render, p4_mutate */
+window.currentShape = 'ellipse';
 function p4_inspirations() {
     return [ 
       {
@@ -63,6 +64,39 @@ function p4_inspirations() {
       foreground: [],
     }
     inspiration.image.loadPixels();
+
+    if (window.currentShape == 'spikey') {
+      for(let i = 0; i < 50; i++){
+        // Get color data from the image at random positions
+        let x = floor(random(inspiration.image.width));
+        let y = floor(random(inspiration.image.height));
+        let index = (x + y * inspiration.image.width) * 4; // Calculate the index of the pixel
+    
+        // Extract color data from the pixel
+        let red = inspiration.image.pixels[index];
+        let green = inspiration.image.pixels[index + 1];
+        let blue = inspiration.image.pixels[index + 2];
+        let brightness = (red + green + blue) / 3;
+        let shapeSize = map(brightness, 0, 255, 5, 0)
+        let shapeX = map(x, 0, inspiration.image.width, 0, width)
+        let shapeY = map(y, 0, inspiration.image.height, 0, height)
+        let opacity = random(255);
+        let a = inspiration.image.pixels[index + 3]; // Alpha value of the pixel
+        
+        // Check if the pixel is fully transparent
+        if (a === 0) {
+          continue; // Skip drawing the shape if the pixel is fully transparent
+        }    
+        design.foreground.push({x: shapeX,
+          y: shapeY,
+          size: shapeSize,
+          w: random(width / 2),
+          h: random(height/ 2),
+          s: random(50),
+          rotation: random(10),
+          fill: [red,green,blue,opacity]})
+      }
+    } else {
     for(let i = 0; i < 300; i++){
       // Get color data from the image at random positions
       let x = floor(random(inspiration.image.width));
@@ -93,6 +127,7 @@ function p4_inspirations() {
         rotation: random(10),
         fill: [red,green,blue,opacity]})
     }
+  }
     return design;
   }
   
@@ -102,7 +137,14 @@ function p4_inspirations() {
       noStroke();
       //rotate(radians(shapes.rotation));
       fill(shapes.fill)
-      ellipse(shapes.x,shapes.y,shapes.w,shapes.h);
+      if(window.currentShape == 'ellipse'){
+        ellipse(shapes.x,shapes.y,shapes.w,shapes.h);
+      } else if (window.currentShape == 'rectangle'){
+        rect(shapes.x,shapes.y,shapes.w,shapes.h);
+      } else {
+        drawSpikeyBall(shapes.x,shapes.y,shapes.w/3,shapes.h);
+      }
+      
     }
   }
   
@@ -123,3 +165,17 @@ function p4_inspirations() {
     return constrain(randomGaussian(num, (rate * (max - min)) / 20), min, max);
   }
   
+  function drawSpikeyBall(x, y, radius, spikeDepth) {
+    beginShape();
+    for (let angle = 0; angle < 360; angle += 1) {
+        // Calculate the modulation of the radius based on the angle
+        let radiusVariation = sin(angle * 10) * spikeDepth;
+        let modRadius = radius + radiusVariation;
+
+        // Calculate vertex coordinates
+        let vx = x + cos(angle) * modRadius;
+        let vy = y + sin(angle) * modRadius;
+        vertex(vx, vy);
+    }
+    endShape(CLOSE);
+}

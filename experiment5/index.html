@@ -57,6 +57,11 @@
 							<button id="restart">
 							restart
 							</button>
+							<select id="shapeSelector">
+								<option value="ellipse">Ellipse</option>
+								<option value="rectangle">Rectangle</option>
+								<option value="spikey">Spikey</option>
+							</select>
 							<p>
 							Mutation rate (<span id="rate"></span>%):<br /><input
 								id="slider"
@@ -75,6 +80,14 @@
 					</div>
 					<div class="results-bottom">
 						<p id="memory" data-max-items="16"></p>
+						<script>
+							document.addEventListener('DOMContentLoaded', function () {
+								const shapeSelector = document.getElementById('shapeSelector');
+								shapeSelector.addEventListener('change', function() {
+									window.currentShape = shapeSelector.value; // Updates the global variable
+								});
+							});
+						</script>
 					</div>
 					</div>
 				</div>
